@@ -5,12 +5,15 @@ import {
    Image,
    List,
    ListItem,
+   Spinner,
 } from '@chakra-ui/react';
 import useGenre from '../hooks/useGenre';
 import getCroppedImageUrl from '../services/image-url';
 
 function GenreList() {
-   const { data: genres } = useGenre();
+   const { data: genres, isLoading } = useGenre();
+
+   if (isLoading) return <Spinner />;
    return (
       <List>
          {genres.map((genre) => (
